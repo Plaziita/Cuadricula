@@ -55,7 +55,7 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun CuadriculaApp(modifier : Modifier = Modifier){
-    Column(modifier = modifier.fillMaxSize()) {
+    Column(modifier = modifier.fillMaxSize().padding(top = 8.dp)) {
         LazyVerticalGrid(
             columns = GridCells.Fixed(2),
             verticalArrangement = Arrangement.spacedBy(8.dp),
