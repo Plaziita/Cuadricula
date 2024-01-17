@@ -29,6 +29,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
@@ -55,11 +56,13 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun CuadriculaApp(modifier : Modifier = Modifier){
-    Column(modifier = modifier.fillMaxSize().padding(top = 8.dp)) {
+    Column(modifier = modifier
+        .fillMaxSize()
+        .padding(dimensionResource(id = R.dimen.padding_small))) {
         LazyVerticalGrid(
             columns = GridCells.Fixed(2),
-            verticalArrangement = Arrangement.spacedBy(8.dp),
-            horizontalArrangement = Arrangement.spacedBy(8.dp)
+            verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.padding_small)),
+            horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.padding_small))
         ) {
             items(DataSource.topics) { topic ->
                 Cuadricula(topic)
@@ -77,7 +80,9 @@ fun Cuadricula(topic : Topic, modifier: Modifier = Modifier){
                     painter = painterResource(id = topic.imageRes),
                     contentDescription = null,
                     modifier = modifier
-                        .size(width = 68.dp, height = 68.dp),
+                        .size(
+                            width = dimensionResource(id = R.dimen.picture_size),
+                            height = dimensionResource(id = R.dimen.picture_size)),
                     contentScale = ContentScale.Crop
                 )
             }
@@ -85,21 +90,21 @@ fun Cuadricula(topic : Topic, modifier: Modifier = Modifier){
                 Text(
                     text = stringResource(id = topic.name),
                     modifier = Modifier
-                        .padding(top = 16.dp)
-                        .padding(bottom = 8.dp)
-                        .padding(horizontal = 16.dp)
+                        .padding(top = dimensionResource(id = R.dimen.padding_medium))
+                        .padding(bottom = dimensionResource(id = R.dimen.padding_small))
+                        .padding(horizontal = dimensionResource(id = R.dimen.padding_medium))
                 )
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Icon(
                         painter = painterResource(id = R.drawable.ic_grain),
                         contentDescription = null,
                         modifier = Modifier
-                            .padding(horizontal = 16.dp)
+                            .padding(horizontal = dimensionResource(id = R.dimen.padding_medium))
                     )
                     Text(
                         text = topic.availableCourses.toString(),
                         modifier = Modifier
-                            .padding(horizontal = 8.dp)
+                            .padding(horizontal = dimensionResource(id = R.dimen.padding_small))
                     )
                 }
             }
